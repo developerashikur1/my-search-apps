@@ -4,10 +4,11 @@ import NastedSearch from '../NastedSearch/NastedSearch';
 import './Home.css';
 
 const Home = () => {
-    const [products, setProducts] = useState({});
+    const [products, setProducts] = useState([]);
     
     // console.log(products);
-
+    const [newProducts, setNewProducts] = useState([]);
+    // console.log(newProducts)
 
     // fetch data from the API
     useEffect(() => {
@@ -16,15 +17,23 @@ const Home = () => {
         .then(res=>res.json())
         .then(data=>setProducts(data.response.categoryAll) )
     }, [])
-    // const pros = products.(x=>console.log(x?.sub_category)
+    
 
     const handleSearchBar = event =>{
         const search = event.target.value;
-        console.log(typeof(search))
+        // console.log(typeof(search))
 
-        const searchBar = products.filter(x=>x.sub_category.some(y=>y?.search_keywords?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
+        
+        // step-1
+        const searchBar = products.filter(x=>x.sub_category.some(y=>y?.royaloak_subcategory_name?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
 
-    
+
+        setNewProducts(searchBar[0]?.sub_category)
+
+        // step-2
+        const findedProducts = newProducts.filter(z=>z?.royaloak_subcategory_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()))
+        console.log(findedProducts)
+
     }
     return (
         <>
