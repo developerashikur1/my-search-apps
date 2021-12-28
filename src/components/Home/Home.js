@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Col, FormControl, InputGroup, Row } from 'react-bootstrap';
+import NastedSearch from '../NastedSearch/NastedSearch';
 import './Home.css';
 
 const Home = () => {
+    const [products, setProducts] = useState({});
+    
+    // console.log(products);
 
+
+    // fetch data from the API
+    useEffect(() => {
+        const uri = 'https://www.royaloakindia.com/api/header-data-v2';
+        fetch(uri)
+        .then(res=>res.json())
+        .then(data=>setProducts(data.response.categoryAll) )
+    }, [])
+    // const pros = products.(x=>console.log(x?.sub_category)
 
     const handleSearchBar = event =>{
-        console.log(event.target.value);
+        const search = event.target.value;
+        console.log(typeof(search))
 
+        const searchBar = products.filter(x=>x.sub_category.some(y=>y?.search_keywords?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
+
+    
     }
     return (
         <>
@@ -34,10 +51,10 @@ const Home = () => {
 
 
 
-            
+
             <h2>This is input</h2>
 
-            
+            <NastedSearch ></NastedSearch>
         </>
     );
 };
