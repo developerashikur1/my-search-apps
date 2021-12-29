@@ -44,3 +44,11 @@
 .productName {
   color: grey !important;
 }
+
+.searchResultBtn {
+  color: black !important;
+  background-color: orange !important;
+  width: 50% !important;
+  margin: auto !important;
+  margin-top: 15px !important;
+}

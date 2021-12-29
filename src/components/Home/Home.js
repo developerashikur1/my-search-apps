@@ -145,7 +145,7 @@ const Home = () => {
 
                                         {/* Product Card Section */}
 
-                                        <a className='cardDecoration' href={result?.producturl}>
+                                        <a className='cardDecoration'  href={result?.producturl} target="_blank">
                                         {multiProduct?.results?.length === 0 ? <Spinner animation="grow" variant="warning" /> : <Card className='productCard'>
                                             <Card.Img variant="top" src={result?.productimage} />
                                             <Card.Body className='p-1'>
@@ -158,6 +158,8 @@ const Home = () => {
                                         </a>
                                     </Col>)
                                 }
+                                <Button href={`https://www.royaloakindia.com/search-new?q=${search}`} 
+                                target="_blank" className='searchResultBtn'>View All Search Results</Button>
                             </Row>               
                         </Col>
                     </Row>
