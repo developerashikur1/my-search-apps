@@ -11,7 +11,7 @@
   background-color: white;
   width: 55%;
   position: absolute;
-  top: 85px;
+  top: 88px;
   left: 22%;
 }
 
@@ -28,4 +28,19 @@
 .hoverButton:hover {
   color: black !important;
   background-color: orange !important;
+}
+
+.productCard:hover {
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  box-shadow: 5px 5px 25px rgba(0, 0, 0, 0.479);
+  z-index: 3;
+}
+
+.cardDecoration {
+  text-decoration: none !important;
+}
+
+.productName {
+  color: grey !important;
 }
