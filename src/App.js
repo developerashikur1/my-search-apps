@@ -5,9 +5,8 @@ import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <Container>
-    <h2>input form</h2>
-    <Home></Home>
+    <Container style={{backgroundColor:'whitesmoke'}}>
+    <Home style={{backgroundColor:'white'}}></Home>
     </Container>
   );
 }

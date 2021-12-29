@@ -6,3 +6,11 @@
   background-color: rgba(255, 255, 255, 0);
   border: none;
 }
+
+.searchResults {
+  background-color: white;
+  width: 55%;
+  position: absolute;
+  top: 85px;
+  left: 22%;
+}
