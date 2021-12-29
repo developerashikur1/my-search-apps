@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Col, FormControl, InputGroup, Row } from 'react-bootstrap';
+import { Button, Card, Col, FormControl, InputGroup, Row } from 'react-bootstrap';
 import './Home.css';
 
 const Home = () => {
@@ -26,61 +26,6 @@ console.log(products)
         // const search = event.target.value;
         setSearch(event.target.value)
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // step-1
-        // const searchBar = products.filter(x=>x.sub_category.some(y=>y?.royaloak_subcategory_name?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
-
-
-
-        // if(searchBar.length!==0){
-        //     setNewProducts(searchBar[0]?.sub_category)
-        // }else{
-        //     return;
-        // }
-
-        // step-2
-        // const findedProducts = newProducts?.filter(z=>z?.royaloak_subcategory_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
-        
-
-        // setFindProducts(findedProducts);
-
-        // setSliceProducts(findProducts[0]?.sub_category?.slice(0, 6))
-    
 
     }
     return (
@@ -131,8 +76,26 @@ console.log(products)
 
                         <Col md={9} className='border-end pe-4 pt-3 pb-3'>
                         <h6>POPULAR PRODUCTS IN ‘ {search.toLocaleUpperCase()} ’</h6> 
-                            <Row>
-                               
+                            <Row className='g-1'>
+                                { 
+                                    products?.results?.map(result=> <Col
+                                    key={result?.productuniqueid}
+                                    md={4}
+                                    >
+                                        <Card>
+                                            <Card.Img variant="top" src={result?.productimage} />
+                                            <Card.Body className='p-1'>
+                                            <Card.Text className='mb-1'>{result?.productname?.slice(0,21)}...</Card.Text>
+                                            <Card.Text>
+                                                This is a longer card with supporting text below as a natural
+                                                lead-in to additional content. This content is a little bit longer.
+                                            </Card.Text>
+                                            </Card.Body>
+                                        </Card>
+
+                                    </Col>)
+
+                                }
                             </Row>               
                         </Col>
                     </Row>
