@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 
 function App() {
   return (
-    <Container style={{backgroundColor:'whitesmoke'}}>
+    <Container className='pt-5'>
     <Home style={{backgroundColor:'white'}}></Home>
     </Container>
   );

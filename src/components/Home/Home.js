@@ -1,49 +1,86 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Col, FormControl, InputGroup, Row } from 'react-bootstrap';
-import NastedSearch from '../NastedSearch/NastedSearch';
 import './Home.css';
 
 const Home = () => {
-    const [products, setProducts] = useState([]);
-    
-    // console.log(products);
-    const [newProducts, setNewProducts] = useState([]);
-    // console.log(newProducts)
-
-    const [findProducts, setFindProducts] = useState([]);
-
     const [search, setSearch] = useState('');
 
-    // fetch data from the API
-    useEffect(() => {
-        const uri = 'https://www.royaloakindia.com/api/header-data-v2';
+    const [products, setProducts] = useState({})
+
+
+console.log(products)
+
+
+    useEffect(()=>{
+        const uri = `https://searchv7.expertrec.com/v6/search/eb17a931b1ab4950928cabbf42527715/?user=&q=${search}&size=6&suggestions=1&maxSuggestions=6`;
         fetch(uri)
         .then(res=>res.json())
-        .then(data=>setProducts(data.response.categoryAll) )
-    }, [])
-    
+        .then(data=>setProducts(data))
+    },[search])
+
+
+
+
 
     const handleSearchBar = event =>{
         // const search = event.target.value;
         setSearch(event.target.value)
         
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // step-1
-        const searchBar = products.filter(x=>x.sub_category.some(y=>y?.royaloak_subcategory_name?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
+        // const searchBar = products.filter(x=>x.sub_category.some(y=>y?.royaloak_subcategory_name?.toLocaleLowerCase().includes(search.toLocaleLowerCase())));
 
 
 
-        if(searchBar.length!==0){
-            setNewProducts(searchBar[0]?.sub_category)
-        }else{
-            return;
-        }
+        // if(searchBar.length!==0){
+        //     setNewProducts(searchBar[0]?.sub_category)
+        // }else{
+        //     return;
+        // }
 
         // step-2
-        const findedProducts = newProducts?.filter(z=>z?.royaloak_subcategory_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
+        // const findedProducts = newProducts?.filter(z=>z?.royaloak_subcategory_name.toLocaleLowerCase().includes(search.toLocaleLowerCase()));
         
 
-        setFindProducts(findedProducts)
-        console.log(findedProducts)
+        // setFindProducts(findedProducts);
+
+        // setSliceProducts(findProducts[0]?.sub_category?.slice(0, 6))
+    
 
     }
     return (
@@ -76,11 +113,15 @@ const Home = () => {
                     <Row>
                         <Col md={3} className='border-end ps-4 pt-3 pb-3'>
                             <h6>TOP SEARCHES</h6>
-                            <Button>{findProducts[0]?.royaloak_subcategory_name}</Button>
+                            {/* <Button
+                            className='hoverButton border-0 rounded-0'>
+                            
+                            {findProducts[0]?.royaloak_subcategory_name}</Button><br/> */}
                             {
-                            findProducts[0]?.sub_category.map(a=><Button
-                            key={a?.url_link}
-                            >{a?.h1_name}</Button>
+                            products?.suggestions?.map(suggestion=><Button
+                             className='hoverButton border-0 rounded-0'
+                            key={suggestion?.score}
+                            >{suggestion?.suggestion}</Button>
                             )
                                 
                             } 
@@ -88,9 +129,11 @@ const Home = () => {
                             <h6 className='mt-3'>TOP COLLECTIONS</h6>                
                         </Col>
 
-                        <Col md={9}>
-                            <h6>POPULAR PRODUCTS IN ‘ {search.toLocaleUpperCase()} ’</h6>                
-
+                        <Col md={9} className='border-end pe-4 pt-3 pb-3'>
+                        <h6>POPULAR PRODUCTS IN ‘ {search.toLocaleUpperCase()} ’</h6> 
+                            <Row>
+                               
+                            </Row>               
                         </Col>
                     </Row>
                 </div>}
@@ -98,10 +141,11 @@ const Home = () => {
 
 
             <h2>This is input</h2>
-
-            <NastedSearch ></NastedSearch>
         </>
     );
 };
 
 export default Home;
+
+
+
